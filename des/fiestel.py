@@ -1,3 +1,5 @@
+from utilities import xor
+
 def fiestel(input_block, round_keys):
 	rounds = 16
 	length = len(input_block)
@@ -14,4 +16,7 @@ def fiestel(input_block, round_keys):
 			except IndexError:
 				pass
 		expanded_right_half = right_half[length/2-1] + expanded_right_half + right_half[0]
-		return expanded_right_half
+
+		xored = xor(expanded_right_half, round_keys[round])
+
+		return xored
