@@ -85,8 +85,8 @@ def fiestel(input_block, round_keys):
 
 		right_half = ''
 		for i in range(8):
-			row = int(blocks[i][0] + blocks[i][5], 2)
-			column = int(blocks[i][1:5], 2)
+			row = int(splitted_right_half[i][0] + splitted_right_half[i][5], 2)
+			column = int(splitted_right_half[i][1:5], 2)
 			right_half += s_box_tables[i][row][column]
 
 		permutation_table = [
