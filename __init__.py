@@ -6,8 +6,12 @@ UPLOAD_FOLDER = 'user_uploads/'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/')
 def index():
+	return render_template("index.html")
+
+@app.route('/des/', methods=["GET", "POST"])
+def des():
 	if request.method == "POST":
 		file = request.files['file']
 		passphrase = request.form['passphrase']
@@ -22,11 +26,7 @@ def index():
 		response.headers["Content-Disposition"] = "attachment; filename=encrypted.txt"
 		response.mimetype = "text/plain"
 		return response
-	return render_template('index.html')
-
-@app.route('/des')
-def des():
-	return 'des'
+	return render_template('des.html')
 
 if __name__ == '__main__':
 	app.run(debug = True)

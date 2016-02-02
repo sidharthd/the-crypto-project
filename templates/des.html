@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<h3 class="text-centre">DES</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 well">
+			<form role="form" method="POST" action="{{ url_for('des') }}" enctype=multipart/form-data>
+				<div class="form-group">
+					<label for="file">Your file</label>
+					<input type="file" name="file" />
+					<p class="help-block">Select the file you want to encrypt.</p>
+				</div>
+				<div class="form-group">
+					<label for="passphrase">Secret passphrase</label>
+					<input type="password" class="form-control" name="passphrase" placeholder="Enter a secret passphrase" />
+					<p class="help-block">You will need this passphrase to decrypt the encrypted file. Keep it secret.</p>
+				</div>
+				<div class="radio">
+					<label class="radio-inine">
+						<input type="radio" name="encryption" value="1" checked> Encryption
+					</label>
+					<label>
+						<input type="radio" name="encryption" value="0"> Decryption
+					</label>
+					<p class="help-block">Select the operation to perform</p>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block">Go!</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}
