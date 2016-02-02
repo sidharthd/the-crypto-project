@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TheCryptoProject</title>
+</head>
+<body>
+	<form method="POST" action="{{ url_for('index') }}" enctype=multipart/form-data>
+		<p>
+			<input type="file" name="file" />
+		</p>
+		<p>
+			<input type="password" name="passphrase" placeholder="Enter a secret passphrase" />
+		</p>
+		<p>
+			<input type="radio" name="encryption" value="1" checked>Encryption</input>
+			<input type="radio" name="encryption" value="0">Decryption</input>
+		</p>
+		<p>
+			<input type="submit" value="Submit" />
+		</p>
+	</form>
+	<a href="{{ url_for('index') }}">Home</a>
+</body>
+</html>
