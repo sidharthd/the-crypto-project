@@ -1,2 +1,5 @@
 # Byte compiled files
 *.pyc
+
+# Directory that holds files uploaded by users
+user_uploads/
