@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- Bootstrap -->
+    <link href={{ url_for("static", filename="css/bootstrap.min.css") }} rel="stylesheet">
+
+    <title>TheCryptoProject</title>
+
+  </head>
+  <body>
+  	<div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="{{ url_for("index") }}" class="navbar-brand">TheCryptoProject</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+    	  <ul class="nav navbar-nav">
+    		<li><a href="{{ url_for("des") }}">DES</a></li>	
+    	  </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="" >About us</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src={{ url_for("static", filename="js/bootstrap.min.js") }}></script>
+  </body>
+</html>

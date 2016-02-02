@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>TheCryptoProject</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
 	<form method="POST" action="{{ url_for('index') }}" enctype=multipart/form-data>
 		<p>
 			<input type="file" name="file" />
@@ -20,5 +16,4 @@
 		</p>
 	</form>
 	<a href="{{ url_for('index') }}">Home</a>
-</body>
-</html>
+{% endblock %}

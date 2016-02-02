@@ -24,5 +24,9 @@ def index():
 		return response
 	return render_template('index.html')
 
+@app.route('/des')
+def des():
+	return 'des'
+
 if __name__ == '__main__':
 	app.run(debug = True)
