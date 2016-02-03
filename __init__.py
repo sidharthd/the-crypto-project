@@ -18,20 +18,28 @@ def des():
 		file = request.files['file']
 		passphrase = request.form['passphrase']
 		encryption = int(request.form['encryption'])
-		print encryption
+
 		try:
+			# Save uploaded file.
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
 		except IOError:
+			# Create the upload directory if it doesn't exist and then save the file.
 			os.makedirs(app.config['UPLOAD_FOLDER'])
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-		return process_des(os.path.join(app.config['UPLOAD_FOLDER'], file.filename), passphrase, encryption)
-		'''
-		input_file = open(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-		response = make_response(input_file.read())
-		response.headers["Content-Disposition"] = "attachment; filename=encrypted.txt"
+
+		encoded_text = process_des(os.path.join(app.config['UPLOAD_FOLDER'], file.filename), passphrase, encryption)
+
+		# Make a response to send the output file for download by the user.
+		response = make_response(encoded_text)
+		if encryption:
+			filename = 'encrypted_' + file.filename
+		else:
+			filename = 'decrypted_' + file.filename
+		response.headers["Content-Disposition"] = "attachment; filename="+filename
 		response.mimetype = "text/plain"
+		
 		return response
-		'''
+
 	return render_template('des.html')
 
 if __name__ == '__main__':
