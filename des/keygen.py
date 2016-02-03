@@ -1,13 +1,9 @@
-from utilities import string_to_bin
-
-def left_shift(input, shifts):
-	output = ''
-	for i in range(shifts):
-		output = input[shifts:] + input[:shifts]
-	return output
+from hashlib import sha256
+from utilities import string_to_bin, left_shift
 
 def keygen(key):
-	key = string_to_bin(key)
+	key_hash = sha256(key).hexdigest()
+	key = string_to_bin(key_hash[:8])
 	pc1 = [
 		57, 49, 41, 33, 25, 17, 9,
 		1, 58, 50, 42, 34, 26, 18,
