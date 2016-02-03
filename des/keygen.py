@@ -1,3 +1,5 @@
+from utilities import string_to_bin
+
 def left_shift(input, shifts):
 	output = ''
 	for i in range(shifts):
@@ -5,6 +7,7 @@ def left_shift(input, shifts):
 	return output
 
 def keygen(key):
+	key = string_to_bin(key)
 	pc1 = [
 		57, 49, 41, 33, 25, 17, 9,
 		1, 58, 50, 42, 34, 26, 18,

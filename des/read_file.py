@@ -1,12 +1,17 @@
 from utilities import string_to_bin
 
-def read_file(filename):
+def read_file(filename, encryption):
+	print encryption
+	if encryption:
+		block_length = 8
+	else:
+		block_length = 64
 	file = open(filename, 'r')
 	input_blocks = []
 	while(True):
-		block = file.read(8)
-		if len(block) < 8:
+		block = file.read(block_length)
+		print block
+		if len(block) < block_length:
 			break
 		input_blocks.append(block)
-	input_blocks = [string_to_bin(x) for x in input_blocks]
 	return input_blocks
