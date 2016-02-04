@@ -5,6 +5,14 @@ from utilities import bin_to_string
 
 def process_des(filename, key, encryption):
 	input_blocks = read_file(filename, encryption)
+	
+	# Return error if file is empty
+	if not input_blocks:
+		return 'file_empty_error'
+
+	if input_blocks == 'not_encrypted_file':
+		return 'not_encrypted_file'
+
 	keys = keygen(key)
 
 	if encryption:

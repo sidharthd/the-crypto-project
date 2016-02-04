@@ -16,6 +16,8 @@ def index():
 def des():
 	if request.method == "POST":
 		file = request.files['file']
+		if not (file.content_type == 'text/plain' or file.content_type == 'application/pdf'):
+			return render_template('des.html', error='Filetype not supported. Please upload a text file or PDF file.')
 		passphrase = request.form['passphrase']
 		encryption = int(request.form['encryption'])
 
@@ -29,6 +31,17 @@ def des():
 
 		encoded_text = process_des(os.path.join(app.config['UPLOAD_FOLDER'], file.filename), passphrase, encryption)
 
+		# Delete the file from server.
+		os.remove(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+
+		# Check if file empty error is set.
+		if encoded_text == 'file_empty_error':
+			return render_template('des.html', error = 'The file was empty. Please upload a non-empty file.')
+
+		# Return error if file was not a properly encrypted file.
+		if encoded_text == 'not_encrypted_file':
+			return render_template('des.html', error = 'Oops! The file you uploaded does not seem to be a properly encrypted one.')
+
 		# Make a response to send the output file for download by the user.
 		response = make_response(encoded_text)
 		if encryption:
@@ -40,7 +53,7 @@ def des():
 		
 		return response
 
-	return render_template('des.html')
+	return render_template('des.html', error=None)
 
 if __name__ == '__main__':
 	app.run(debug = True)
