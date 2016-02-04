@@ -28,7 +28,7 @@
     	  </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="" >About us</a></li>
+            <li><a href="{{ url_for("about") }}" >About us</a></li>
           </ul>
 
         </div>
@@ -44,8 +44,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Bootstrap JS -->
     <script src={{ url_for("static", filename="js/bootstrap.min.js") }}></script>
-    <!-- Dropzone -->
-    <script src={{ url_for("static", filename="js/dropzone.js") }}></script>
     <!-- Custom JS -->
     <script src={{ url_for("static", filename="js/custom.js") }}></script>
   </body>
